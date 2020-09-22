@@ -1,0 +1,48 @@
+{
+  "name": "test-react",
+  "version": "1.0.0",
+  "description": "Test task on react.",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production npx webpack",
+    "start:dev": "webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergeyVN94/test-react.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Sergey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergeyVN94/test-react/issues"
+  },
+  "homepage": "https://github.com/SergeyVN94/test-react#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.0.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.3.0",
+    "eslint": "^7.9.0",
+    "find": "^0.3.0",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^0.11.2",
+    "postcss-loader": "^4.0.2",
+    "pug": "^3.0.0",
+    "pug-loader": "^2.4.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "sass": "^1.26.11",
+    "sass-loader": "^10.0.2",
+    "ts-loader": "^8.0.4",
+    "typescript": "^4.0.3",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
