@@ -1,0 +1,16 @@
+mixin checkbox-button(options = {})
+  -
+    const {
+      text = '',
+      value = false,
+      checked = false,
+    } = options;
+
+  label.checkbox-button.js-checkbox-button
+    input(
+      class='checkbox-button__input'
+      type='checkbox',
+      value=value,
+      checked=checked,
+    )
+    .checkbox-button__text #{text}

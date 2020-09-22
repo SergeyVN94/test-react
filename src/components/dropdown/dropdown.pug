@@ -1,0 +1,21 @@
+mixin dropdown(options={})
+  -
+    const {
+      items = [],
+      title = '',
+      name = false,
+    } = options;
+
+  if items
+    .dropdown.js-dropdown(data-name=name)
+      if title
+        .dropdown__title #{title}
+      .dropdown__head.js-dropdown__head
+        .dropdown__head-text.js-dropdown__head-text #{items[0].text}
+        .dropdown__expand-button V
+      .dropdown__container
+        ul.dropdown__items
+          for i in items
+            li.dropdown__item.js-dropdown__item
+              -const { text = '', value = '' } = i;
+              .dropdown__item-text.js-dropdown__item-text(data-value=value) #{text}

@@ -1,0 +1,31 @@
+include /radio-button/radio-button.pug
+include /checkbox-button/checkbox-button.pug
+include /dropdown/dropdown.pug
+
+mixin filters(options={})
+  -
+    const {
+      id = false,
+      sortedBy = [],
+      statuses = [],
+      dropdowns = [],
+    } = options;
+    
+  .filters.js-filters(id=id)
+    if sortedBy
+      ul.filters__sort-options
+        -if (!sortedBy.some((item) => item.checked)) sortedBy[0].checked = true;
+        -console.log(sortedBy);
+        for i in sortedBy
+          li.filters__sort-option
+            -i.name = 'sort-option'
+            +radio-button(i)
+    if statuses
+      ul.filters__statuses
+        for i in statuses
+          li.filters__status
+            +checkbox-button(i)
+    if dropdowns && dropdowns[0].items
+      ul.filters__dropdowns
+        for i in dropdowns
+          +dropdown(i)
