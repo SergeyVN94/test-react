@@ -19,7 +19,7 @@ const pages = find
 const entry = { 'main': `${context}/scripts/index.ts` };
 pages.forEach((page) => (entry[page] = `${context}/pages/${page}/${page}.ts`));
 
-const getFileName = (extension) => `[name]${isProduction ? '.[contenthash]' : ''}${extension}`;
+const getFileName = (extension) => `[name].[${isProduction ? 'content' : ''}hash]${extension}`;
 
 const getOptimization = () => {
   const config = {
@@ -51,6 +51,11 @@ const rules = [
       'postcss-loader',
       'sass-loader',
     ],
+  },
+  {
+    test: /\.tsx?$/,
+    use: 'ts-loader',
+    exclude: /node_modules/,
   },
 ];
 

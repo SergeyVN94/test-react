@@ -1,0 +1,36 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "plugins": ["@typescript-eslint", "promise"],
+  "rules": {
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-underscore-dangle": "off",
+    "id-length": [
+      "error",
+      {
+        "min": 2,
+        "exceptions": ["i", "j", "$"]
+      }
+    ],
+    "no-new": "off",
+    "@typescript-eslint/interface-name-prefix": ["error", "always"],
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      { "allowExpressions": true }
+    ],
+    "@typescript-eslint/no-unused-expressions": "off",
+    "@typescript-eslint/no-unnecessary-type-assertion": "off"
+  }
+}
