@@ -1,0 +1,39 @@
+.employee-card
+  display: block
+  padding: 1rem 1.5rem
+  border-radius: 4px 
+  background: #afa3e43b
+  user-select: none
+  cursor: pointer
+
+  &:hover
+    box-shadow: 0 0 10px #afa3e4fa
+
+  &:active
+    box-shadow: 0 0 10px #e4a3a3fa
+
+  &__container
+    margin: 0
+    padding: 0
+    list-style: none
+
+  &__item:not(:first-child)
+    margin-top: 0.5rem
+
+  &__text
+    margin: 0
+    padding: 2px 0 3px
+
+  &__label,
+  &__value
+    padding: 6px 10px
+    display: inline-block
+    border-radius: 4px
+
+  &__label
+    margin-right: 1rem
+    width: 100px
+    background: #a3b8e4a8
+    
+  &__value
+    background: #a3e4aca8

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/unbound-method */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { boundMethod } from 'autobind-decorator';
 
 import './dropdown.sass';

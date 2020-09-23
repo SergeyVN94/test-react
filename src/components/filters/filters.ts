@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/unbound-method */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { boundMethod } from 'autobind-decorator';
 
 import Dropdown from '../dropdown/dropdown';
@@ -41,6 +43,10 @@ class Filters {
 
   public onChange(callback: ChangeEventCallback): void {
     this.changeEventCallback = callback;
+  }
+
+  public getState(): IStateComponents {
+    return this.stateComponents;
   }
 
   private initComponents(): void {
@@ -98,3 +104,4 @@ class Filters {
 }
 
 export default Filters;
+export { IStateComponents };

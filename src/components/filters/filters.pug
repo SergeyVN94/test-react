@@ -15,7 +15,6 @@ mixin filters(options={})
     if sortedBy
       ul.filters__sort-options
         -if (!sortedBy.some((item) => item.checked)) sortedBy[0].checked = true;
-        -console.log(sortedBy);
         for i in sortedBy
           li.filters__sort-option
             -i.name = 'sort-option'
