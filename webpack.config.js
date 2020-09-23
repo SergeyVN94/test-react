@@ -12,7 +12,7 @@ const context = `${__dirname}/src`;
 const dist = `${__dirname}/dist`;
 
 const pages = find
-  .fileSync(/\.(pug|ts|sass)$/, `${context}/pages`)
+  .fileSync(/\.(pug)$/, `${context}/pages`)
   .map((name) => name.slice(name.lastIndexOf('/') + 1, name.lastIndexOf('.')))
   .filter((page, index, arr) => arr.indexOf(page) === index);
 

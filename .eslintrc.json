@@ -18,13 +18,7 @@
     "import/extensions": "off",
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "no-underscore-dangle": "off",
-    "id-length": [
-      "error",
-      {
-        "min": 2,
-        "exceptions": ["i", "j", "$"]
-      }
-    ],
+    "id-length": "off",
     "no-new": "off",
     "@typescript-eslint/naming-convention": [
       "error",
