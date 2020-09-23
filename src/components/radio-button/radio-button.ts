@@ -2,14 +2,12 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { boundMethod } from 'autobind-decorator';
 
-type ClickCallback = (value: string, text: string, name: string) => void;
+type ClickCallback = (value: string, name: string) => void;
 
 class RadioButton {
   private radio: Element;
 
   private input: HTMLInputElement;
-
-  private text: string;
 
   private callback: ClickCallback;
 
@@ -18,18 +16,16 @@ class RadioButton {
     this.init(selectorOrElement);
   }
 
-  public onClick(callback: (value: string, text: string, name: string) => void): void {
+  public onClick(callback: (value: string, name: string) => void): void {
     this.callback = callback;
   }
 
   public getState(): {
     value: string;
-    text: string;
     name: string;
     checked: boolean;
   } {
     return {
-      text: this.text,
       value: this.input.value,
       name: this.input.name,
       checked: this.input.checked,
@@ -42,8 +38,6 @@ class RadioButton {
       : selectorOrElement;
 
     this.input = this.radio.querySelector('.radio-button__input');
-    this.text = this.radio.querySelector('.radio-button__text').innerHTML;
-
     this.radio.addEventListener('click', this.handleClick);
   }
 
@@ -53,7 +47,7 @@ class RadioButton {
     if (
       this.callback
       && isTargetInput
-    ) this.callback(this.input.value, this.text, this.input.name);
+    ) this.callback(this.input.value, this.input.name);
   }
 }
 

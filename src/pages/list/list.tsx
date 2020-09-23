@@ -1,44 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Filters, { IStateComponents } from '../../components/filters/filters';
+import Filters from '../../components/filters/filters';
 import Employees from '../../components/employees/Employees';
-import './list.sass';
 import employees from '../../data/employees.json';
-
-interface IEmployeeInfo {
-  id: number;
-  name: string;
-  isArchive: boolean;
-  role: string;
-  phone: string;
-  birthday: string;
-}
+import filterEmployees from './filterEmployees';
+import './list.sass';
 
 const filters = new Filters('#filters');
 
-const filterEmployees = ({ checkbox }: IStateComponents): IEmployeeInfo[] => {
-  let filteredEmployee = [...employees];
-
-  Object.keys(checkbox).forEach((key) => {
-    if (key === 'in-archive') {
-      filteredEmployee = filteredEmployee.filter((employee) => (
-        checkbox[key].checked
-          ? employee.isArchive
-          : !employee.isArchive
-      ));
-    }
-  });
-
-  return filteredEmployee;
-};
-
-filters.onChange((filtersState: IStateComponents) => {
-  const filteredEmployee = filterEmployees(filtersState);
+filters.onChange((filtersState: IFiltersState) => {
+  console.log(filtersState);
+  
+  const filteredEmployee = filterEmployees(filtersState, employees);
   ReactDOM.render(<Employees employees={ filteredEmployee }/>, document.getElementById('employees'));
 });
 
 ReactDOM.render(
-  <Employees employees={ filterEmployees(filters.getState()) }/>,
+  <Employees employees={ filterEmployees(filters.getState(), employees) }/>,
   document.getElementById('employees'),
 );

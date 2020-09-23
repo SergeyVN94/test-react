@@ -7,24 +7,10 @@ import Checkbox from '../checkbox-button/checkbox-button';
 import './filters.sass';
 import RadioButton from '../radio-button/radio-button';
 
-interface IStateComponents {
-  dropdown: {
-    [index: string]: { text: string; value: string; };
-  };
-  checkbox: {
-    [index: string]: { text: string; checked: boolean; };
-  };
-  radio: {
-    [index: string]: { text: string; value: string; };
-  };
-}
-
-type ChangeEventCallback = (state: IStateComponents) => void;
-
 class Filters {
   private readonly filters: HTMLElement;
 
-  private readonly stateComponents: IStateComponents;
+  private readonly stateComponents: IFiltersState;
 
   private changeEventCallback: ChangeEventCallback;
 
@@ -32,11 +18,7 @@ class Filters {
     this.filters = typeof filters === 'string'
       ? document.querySelector(filters) as HTMLElement
       : filters;
-    this.stateComponents = {
-      checkbox: {},
-      dropdown: {},
-      radio: {},
-    };
+    this.stateComponents = {};
     this.changeEventCallback = null;
     this.initComponents();
   }
@@ -45,7 +27,7 @@ class Filters {
     this.changeEventCallback = callback;
   }
 
-  public getState(): IStateComponents {
+  public getState(): IFiltersState {
     return this.stateComponents;
   }
 
@@ -54,29 +36,24 @@ class Filters {
       const dropdown = new Dropdown(dropdownElement as HTMLElement);
       dropdown.onSelect(this.handleSelect);
 
-      const { name, text, value } = dropdown.getState();
-      this.stateComponents.dropdown[name] = { text, value };
+      const { name, value } = dropdown.getState();
+      this.stateComponents[name] = value;
     });
 
     Array.from(this.filters.querySelectorAll('.js-checkbox-button')).forEach((checkboxElement) => {
       const checkbox = new Checkbox(checkboxElement);
       checkbox.onClick(this.handleCheckboxClick);
 
-      const { text, value, checked } = checkbox.getState();
-      this.stateComponents.checkbox[value] = { text, checked };
+      const { value, checked } = checkbox.getState();
+      this.stateComponents[value] = checked;
     });
 
     Array.from(this.filters.querySelectorAll('.js-radio-button')).forEach((radioElement) => {
       const checkbox = new RadioButton(radioElement);
       checkbox.onClick(this.handleRadioClick);
 
-      const {
-        text,
-        value,
-        name,
-        checked,
-      } = checkbox.getState();
-      if (checked) this.stateComponents.radio[name] = { text, value };
+      const { value, name, checked } = checkbox.getState();
+      if (checked) this.stateComponents[name] = value;
     });
   }
 
@@ -85,23 +62,22 @@ class Filters {
   }
 
   @boundMethod
-  private handleRadioClick(value: string, text: string, name: string): void {
-    this.stateComponents.radio[name] = { value, text };
+  private handleRadioClick(value: string, name: string): void {
+    this.stateComponents[name] = value;
     this.triggerChangeEvent();
   }
 
   @boundMethod
-  private handleCheckboxClick(value: string, text: string, checked: boolean): void {
-    this.stateComponents.checkbox[value] = { text, checked };
+  private handleCheckboxClick(value: string, checked: boolean): void {
+    this.stateComponents[value] = checked;
     this.triggerChangeEvent();
   }
 
   @boundMethod
-  private handleSelect(name: string, text: string, value: string): void {
-    this.stateComponents.dropdown[name] = { text, value };
+  private handleSelect(name: string, value: string): void {
+    this.stateComponents[name] = value;
     this.triggerChangeEvent();
   }
 }
 
 export default Filters;
-export { IStateComponents };

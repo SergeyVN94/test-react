@@ -23,16 +23,21 @@
   &__text
     margin: 0
     padding: 2px 0 3px
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    align-items: flex-end
 
   &__label,
   &__value
     padding: 6px 10px
-    display: inline-block
     border-radius: 4px
+    overflow-wrap: anywhere
 
   &__label
     margin-right: 1rem
     width: 100px
+    min-width: 100px
     background: #a3b8e4a8
     
   &__value

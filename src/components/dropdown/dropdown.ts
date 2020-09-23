@@ -11,7 +11,7 @@ interface IComponents {
   items: HTMLElement[];
 }
 
-type SelectCallback = (name: string, text: string, value: string) => void;
+type SelectCallback = (name: string, value: string) => void;
 
 const enum CLASSES {
   DROPDOWN = 'dropdown',
@@ -45,10 +45,9 @@ class Dropdown {
     this.selectCallback = callback;
   }
 
-  public getState(): { name: string; text: string; value: string } {
+  public getState(): { name: string; value: string } {
     return {
       name: this.components.dropdown.dataset.name,
-      text: this.currentItem.innerHTML,
       value: this.currentItem.dataset.value,
     };
   }
@@ -89,7 +88,6 @@ class Dropdown {
       && target.dataset.value
       && this.selectCallback(
         dropdown.dataset.name,
-        target.innerHTML,
         target.dataset.value,
       );
   }

@@ -17,7 +17,7 @@ mixin filters(options={})
         -if (!sortedBy.some((item) => item.checked)) sortedBy[0].checked = true;
         for i in sortedBy
           li.filters__sort-option
-            -i.name = 'sort-option'
+            -i.name = 'sort-by'
             +radio-button(i)
     if statuses
       ul.filters__statuses
