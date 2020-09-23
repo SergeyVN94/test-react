@@ -25,10 +25,7 @@ class Filters {
 
   public onChange(callback: ChangeEventCallback): void {
     this.changeEventCallback = callback;
-  }
-
-  public getState(): IFiltersState {
-    return this.stateComponents;
+    this.triggerChangeEvent();
   }
 
   private initComponents(): void {
