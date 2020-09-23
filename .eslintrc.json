@@ -15,6 +15,7 @@
   },
   "plugins": ["@typescript-eslint", "promise"],
   "rules": {
+    "import/extensions": "off",
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "no-underscore-dangle": "off",
     "id-length": [

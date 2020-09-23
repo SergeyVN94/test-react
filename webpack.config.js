@@ -16,8 +16,8 @@ const pages = find
   .map((name) => name.slice(name.lastIndexOf('/') + 1, name.lastIndexOf('.')))
   .filter((page, index, arr) => arr.indexOf(page) === index);
 
-const entry = { 'main': `${context}/scripts/index.ts` };
-pages.forEach((page) => (entry[page] = `${context}/pages/${page}/${page}.ts`));
+const entry = {};
+pages.forEach((page) => (entry[page] = `${context}/pages/${page}/${page}`));
 
 const getFileName = (extension) => `[name].[${isProduction ? 'content' : ''}hash]${extension}`;
 

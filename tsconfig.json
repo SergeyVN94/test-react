@@ -9,11 +9,12 @@
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
     "target": "es5",
-    "module": "commonjs",
+    "module": "es6",
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "resolveJsonModule": true
   },
   "exclude": ["node_modules"]
 }
