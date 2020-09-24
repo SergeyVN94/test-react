@@ -1,10 +1,55 @@
+@import '@styles/constants.sass'
+@import '@styles/mixins.sass'
+  
 .checkbox-button
   display: flex
   flex-direction: row
   flex-wrap: nowrap
-  align-items: center
+  align-items: flex-start
   cursor: pointer
 
+  &__input
+    display: none
+
+    &:checked + .checkbox-button__new-input
+      border-color: $bg-primary
+      background: $gradient-primary
+      background-clip: text
+      -webkit-text-fill-color: transparent
+
+    &:hover + .checkbox-button__new-input
+      box-shadow: 0px 0px 10px $bg-primary
+
+    &:active + .checkbox-button__new-input
+      box-shadow: 0px 0px 5px $text-secondary
+
+    &:focus + .checkbox-button__new-input
+      border-color: $text-secondary
+
+  &__new-input
+    display: flex
+    justify-content: center
+    align-items: center
+    min-width: $middle-first-size
+    height: $middle-first-size
+    background: #fff
+    border: 1px solid $light-title
+    box-sizing: border-box
+    border-radius: 4px
+    font-family: 'Material Icons'
+    font-style: normal
+    font-weight: normal
+    font-size: 1rem
+    color: white
+    user-select: none
+
   &__text
-    margin-left: 10px
+    @include text-body
+    padding-top: 1px
+    margin-left: $tiny-size
+    word-break: normal
+    width: 100%
+    max-width: 200px
+    color: $text-secondary
+    line-height: normal 
     user-select: none

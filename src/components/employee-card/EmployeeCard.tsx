@@ -3,17 +3,8 @@ import ReactDOM from 'react-dom';
 
 import './employee-card.sass';
 
-interface IEmployeeCardProps {
-  'id': number;
-  'name': string;
-  'isArchive': boolean;
-  'role': string;
-  'phone': string;
-  'birthday': string;
-}
-
 const EmployeeCard = (props: IEmployeeCardProps): JSX.Element => (
-  <a className='employee-card' data-info={ JSON.stringify(props) } href='/mask-address/change-me'>
+  <a className='employee-card' data-info={ JSON.stringify(props) } href={ `edit-card.html?id=${props.id}` }>
     <ul className='employee-card__container'>
       <li className='employee-card__item'>
         <p className='employee-card__text'>
@@ -38,4 +29,3 @@ const EmployeeCard = (props: IEmployeeCardProps): JSX.Element => (
 );
 
 export default EmployeeCard;
-export { IEmployeeCardProps };

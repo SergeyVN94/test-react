@@ -11,7 +11,7 @@ const initialState: IStoreState = {
 
 const reducer = (state: IStoreState, action: IStoreAction): IStoreState => {
   switch (action.type) {
-    case 'change-filters':
+    case 'CHANGE_FILTERS':
       return { ...state, filteredEmployee: filterEmployees(action.filtersState, state.employees) };
 
     default:

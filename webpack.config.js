@@ -3,7 +3,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const AutoprefixerPlugin = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const find = require('find');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const mode = isProduction ? 'production' : 'development';
@@ -11,38 +10,21 @@ const devtool = isProduction ? 'nosources-source-map' : 'inline-source-map';
 const context = `${__dirname}/src`;
 const dist = `${__dirname}/dist`;
 
-const pages = find
-  .fileSync(/\.(pug)$/, `${context}/pages`)
-  .map((name) => name.slice(name.lastIndexOf('/') + 1, name.lastIndexOf('.')))
-  .filter((page, index, arr) => arr.indexOf(page) === index);
-
-const entry = {};
-pages.forEach((page) => (entry[page] = `${context}/pages/${page}/${page}`));
-
 const getFileName = (extension) => `[name].[${isProduction ? 'content' : ''}hash]${extension}`;
 
 const getOptimization = () => {
-  const config = {
-    splitChunks: { chunks: 'all' },
-  };
-
-  if (isProduction) {
-    config.minimizer = [new TerserPlugin({
-      terserOptions: {},
-      cache: true,
-      parallel: true,
-    })];
-  }
-
-  return config;
+  return isProduction
+    ? {
+      minimizer: [new TerserPlugin({
+        terserOptions: {},
+        cache: true,
+        parallel: true,
+      })]
+    }
+    : {};
 };
 
 const rules = [
-  {
-    test: /\.pug$/,
-    loader: 'pug-loader',
-    options: { root: `${context}/components` },
-  },
   {
     test: /\.(sa|sc|c)ss$/,
     use: [
@@ -56,6 +38,14 @@ const rules = [
     test: /\.tsx?$/,
     use: 'ts-loader',
     exclude: /node_modules/,
+  },
+  {
+    test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+    loader: 'file-loader',
+    options: {
+      name: '[name].[ext]',
+      outputPath: './fonts',
+    },
   },
 ];
 
@@ -72,7 +62,7 @@ const config = {
   mode,
   context,
   resolve,
-  entry,
+  entry: './public/index.tsx',
   output: {
     path: dist,
     filename: getFileName('.js'),
@@ -80,20 +70,18 @@ const config = {
   module: { rules },
   optimization: getOptimization(),
   plugins: [
-    ...pages.map((page) => (
-      new HTMLWebpackPlugin({
-        template: `./pages/${page}/${page}.pug`,
-        filename: `${dist}/${page}.html`,
-        minify: isProduction,
-      })
-    )),
+    new HTMLWebpackPlugin({
+      template: './public/index.html',
+      filename: `${dist}/index.html`,
+      minify: isProduction,
+    }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: getFileName('.css') }),
     AutoprefixerPlugin,
   ],
   devServer: {
     contentBase: dist,
-    index: 'list.html',
+    index: 'index.html',
     compress: true,
     port: 9000,
   },

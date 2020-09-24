@@ -1,3 +1,5 @@
+@import '@styles/mixins.sass'
+  
 .employee-card
   display: block
   padding: 1rem 1.5rem
@@ -22,12 +24,14 @@
     margin-top: 0.5rem
 
   &__text
+    @include text-body
     margin: 0
     padding: 2px 0 3px
     display: flex
     flex-direction: row
     flex-wrap: nowrap
     align-items: flex-end
+    line-height: 1.25rem
 
   &__label,
   &__value

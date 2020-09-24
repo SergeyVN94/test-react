@@ -1,6 +1,3 @@
-@import '@components/radio-button/radio-button.sass'
-@import '@components/checkbox-button/checkbox-button.sass'
-  
 .filters
   padding: 1rem
   border-radius: 4px
@@ -12,16 +9,12 @@
   flex-wrap: wrap
   align-items: flex-end
 
-  &__sort-options
+  &__statuses,
+  &__dropdowns
     display: flex
     flex-direction: row
     flex-wrap: wrap
-    list-style: none
 
-  &__sort-option
-    &:not(:last-child)
-      margin-right: 1rem
-
-  &__statuses
-    list-style: none
-    margin-left: 1rem
+  &__statuses,
+  &__dropdowns
+    margin-left: 2rem

@@ -12,6 +12,7 @@
       display: block
 
   &__title
+    margin: 0
     font-size: 1rem
     line-height: 1.25rem
     user-select: none
@@ -32,13 +33,21 @@
       border-color: #536154
 
   &__head-text
+    margin: 0
     padding: 10px 15px 11px
     user-select: none
     
-  &__expand-button
-    width: 30px
+  &__expand-button    
+    width: 40px
+    font-family: 'Material Icons'
+    font-size: 1.5rem
+    font-weight: normal
     text-align: center
     user-select: none
+    outline: 0
+    border: 0
+    background: transparent
+    cursor: pointer
     
   &__container
     width: 100%
@@ -49,7 +58,8 @@
     position: absolute
     left: 0
     top: 0
-    padding: 8px 8px 8px 15px
+    margin: 0
+    padding: 8px
     display: none
     width: 100%
     list-style: none
@@ -59,11 +69,13 @@
     background: #fff
 
   &__item
+    margin: 0
     cursor: pointer
 
     &:hover
       background: #d9ffc7c0
 
   &__item-text
-    padding: 6px 0
+    margin: 0
+    padding: 6px 7px
     user-select: none
