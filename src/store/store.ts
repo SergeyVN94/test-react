@@ -1,24 +1,17 @@
 import * as Redux from 'redux';
 
-import employees from '../data/employees.json';
-import filterEmployees from './filterEmployees';
+import {
+  saveStateToLocalStorage,
+  loadState,
+  reducer,
+} from './lib';
 
-const initialState: IStoreState = {
-  employees: [...employees],
-  filteredEmployee: [...employees],
-  filterState: {},
-};
+const store = Redux.createStore(reducer, loadState());
 
-const reducer = (state: IStoreState, action: IStoreAction): IStoreState => {
-  switch (action.type) {
-    case 'CHANGE_FILTERS':
-      return { ...state, filteredEmployee: filterEmployees(action.filtersState, state.employees) };
+saveStateToLocalStorage(store);
 
-    default:
-      return state;
-  }
-};
-
-const store = Redux.createStore(reducer, initialState);
+store.subscribe(() => {
+  saveStateToLocalStorage(store);
+});
 
 export default store;

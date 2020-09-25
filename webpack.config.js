@@ -84,6 +84,9 @@ const config = {
     index: 'index.html',
     compress: true,
     port: 9000,
+    historyApiFallback: {
+      '/edit-card': 'index.html',
+    },
   },
 };
 

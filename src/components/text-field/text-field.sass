@@ -1,0 +1,29 @@
+@import '@styles/constants.sass'
+
+.text-field
+  width: 100%
+  min-width: 0
+  height: $very-big-size
+  padding: 0rem 1rem $micro-size 1rem
+  font-family: Montserrat, Arial, sans-serif
+  font-style: normal
+  font-weight: normal
+  font-size: .9786rem
+  line-height: 1.2857rem
+  color: $text-primary
+  background-color: #fff
+  border: .0714rem solid $light-title
+  border-radius: .2857rem
+
+  &::placeholder
+    color: $light-title
+    opacity: 1
+
+  &:hover,
+  &:focus
+    line-height: $big-size
+    border-color: $text-secondary
+
+  &_theme_incorrect-value,
+  &_theme_incorrect-value:hover
+    border-color: #e92f2fb6

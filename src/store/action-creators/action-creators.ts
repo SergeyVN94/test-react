@@ -3,4 +3,12 @@ const actionFiltersUpdate = (filtersState: IFiltersState): IStoreAction => ({
   filtersState,
 });
 
-export default actionFiltersUpdate;
+const actionEmployeesUpdate = (employees: IEmployeeInfo[]): IStoreAction => ({
+  type: 'EMPLOYEES_UPDATE',
+  employees,
+});
+
+export {
+  actionFiltersUpdate,
+  actionEmployeesUpdate,
+};

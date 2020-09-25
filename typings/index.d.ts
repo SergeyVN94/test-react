@@ -28,12 +28,15 @@ interface IEmployeeInfo {
 interface IStoreState {
   employees: IEmployeeInfo[];
   filteredEmployee: IEmployeeInfo[];
-  filterState: IFiltersState;
+  filtersState: IFiltersState;
 }
 
 type IStoreAction = {
   type: 'CHANGE_FILTERS';
   filtersState: IFiltersState;
+} | {
+  type: 'EMPLOYEES_UPDATE';
+  employees: IEmployeeInfo[];
 };
 
 interface ICheckboxProps {
@@ -54,6 +57,7 @@ interface IRadioGroupProps {
 
 interface IDropdownProps {
   title?: string;
+  role?: string;
   name: string;
   items: { text: string; value: string; }[];
   onSelect?: (name: string, value: string) => void;
@@ -64,4 +68,18 @@ interface IFiltersProps {
   statuses?: ICheckboxProps[];
   dropdowns?: IDropdownProps[];
   onUpdate: (filtersState: IFiltersState) => void;
+}
+
+interface IFormEditProps {
+  employeeInfo?: IEmployeeInfo;
+  onSubmit?: (employee: IEmployeeInfo) => void;
+}
+
+interface ITextFieldProps {
+  mask?: string;
+  name?: string;
+  placeholder?: string;
+  value?: string | number;
+  theme?: string;
+  onInput?: (value: string) => void;
 }

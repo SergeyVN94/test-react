@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 import './employee-card.sass';
 
 const EmployeeCard = (props: IEmployeeCardProps): JSX.Element => (
-  <a className='employee-card' data-info={ JSON.stringify(props) } href={ `edit-card.html?id=${props.id}` }>
+  <Link className='employee-card' data-info={ JSON.stringify(props) } to={ `/edit-card?id=${props.id}` }>
     <ul className='employee-card__container'>
       <li className='employee-card__item'>
         <p className='employee-card__text'>
@@ -25,7 +25,7 @@ const EmployeeCard = (props: IEmployeeCardProps): JSX.Element => (
         </p>
       </li>
     </ul>
-  </a>
+  </Link>
 );
 
 export default EmployeeCard;

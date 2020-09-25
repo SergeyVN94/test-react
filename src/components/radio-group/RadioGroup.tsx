@@ -1,5 +1,4 @@
 import React, { FormEvent } from 'react';
-import ReactDOM from 'react-dom';
 
 import './radio-group.sass';
 

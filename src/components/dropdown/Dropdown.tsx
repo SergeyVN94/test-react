@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import './dropdown.sass';
 
@@ -8,23 +7,28 @@ const Dropdown = (props: IDropdownProps): JSX.Element => {
     items = [],
     name = '',
     title = '',
+    role = '',
     onSelect = null,
   } = props;
 
   const titleElement = title ? <h3 className='dropdown__title'>{ title }</h3> : '';
 
+  let currentIndex = items.findIndex(({ text, value }) => (text === role || value === role));
+  if (currentIndex < 0 || !role) currentIndex = 0;
+
   const [state, setSate] = React.useState({
+    currentIndex,
     isExpanded: false,
-    currentValue: (items && items[0].value) || '',
-    headText: (items && items[0].text) || '',
+    headText: (items && items[currentIndex].text) || '',
   });
 
   const toggleExpanded = (): void => {
     setSate({ ...state, isExpanded: !state.isExpanded });
   };
 
-  const handleItemClick = (value: string, text: string): void => {
-    setSate({ isExpanded: false, currentValue: value, headText: text });
+  const handleItemClick = (index: number): void => {
+    const { text, value } = items[index];
+    setSate({ isExpanded: false, currentIndex: index, headText: text });
     onSelect && onSelect(name, value);
   };
 
@@ -38,11 +42,11 @@ const Dropdown = (props: IDropdownProps): JSX.Element => {
       <div className='dropdown__container'>
         <ul className='dropdown__items'>
           {
-            items.map((item) => (
+            items.map((item, index) => (
               <li className='dropdown__item' key={ item.value }>
                 <p className='dropdown__item-text' data-value={ item.value } onClick={
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  handleItemClick.bind(this, item.value, item.text)
+                  handleItemClick.bind(this, index)
                 }>
                   { item.text }
                 </p>

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import EmployeeCard from '../employee-card/EmployeeCard';
 import './employees.sass';

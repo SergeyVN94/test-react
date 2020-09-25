@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
+import store from '../../store/store';
 import Dropdown from '../dropdown/Dropdown';
 import CheckboxButton from '../checkbox-button/CheckboxButton';
 import RadioGroup from '../radio-group/RadioGroup';
@@ -14,23 +14,12 @@ const Filters = (props: IFiltersProps): JSX.Element => {
     onUpdate,
   } = props;
 
+  const { filtersState } = store.getState();
+
+  const index = sortedBy.findIndex((item) => item.value === filtersState['sort-by']);
+  if (index >= 0) sortedBy.forEach((_, i) => { sortedBy[i].checked = (i === index); });
+
   if (!sortedBy.some((item) => item.checked)) sortedBy.length && (sortedBy[0].checked = true);
-
-  const filtersState: IFiltersState = {};
-
-  sortedBy.forEach((item) => {
-    if (item.name && item.value && item.checked) filtersState[item.name] = item.value;
-  });
-
-  statuses.forEach((item) => {
-    if (item.value) filtersState[item.value] = item.checked;
-  });
-
-  dropdowns.forEach((item) => {
-    if (item.name && item.items) filtersState[item.name] = item.items[0].value;
-  });
-
-  onUpdate({ ...filtersState });
 
   const handleDropdownSelect = (name: string, value: string): void => {
     if (name && value) filtersState[name] = value;
@@ -58,14 +47,22 @@ const Filters = (props: IFiltersProps): JSX.Element => {
       statuses
       && <div className='filters__statuses'>
         { statuses.map((item) => <CheckboxButton
-          { ...item } onToggle={ handleCheckboxToggle } />) }
+          { ...item }
+          onToggle={ handleCheckboxToggle }
+          key={ item.value }
+          checked={ (typeof filtersState[item.value] === 'boolean') && Boolean(filtersState[item.value]) }
+        />) }
       </div>
     }
     {
       dropdowns
       && <div className='filters__dropdowns'>
         { dropdowns.map((item) => <Dropdown
-          { ...item } onSelect={ handleDropdownSelect } />) }
+          { ...item }
+          onSelect={ handleDropdownSelect }
+          key={ item.name }
+          role={ filtersState.role && filtersState.role.toString() }
+        />) }
       </div>
     }
   </div>);

@@ -1,45 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
-import Filters from '../components/filters/Filters';
-import EmployeesContainer from '../containers/EmployeesContainer';
-import actionFiltersUpdate from '../store/action-creators/action-creators';
-import store from '../store/store';
+import EditCard from '../components/edit-card/EditCard';
+import Home from '../components/home/Home';
 
-const filters = {
-  sortedBy: [
-    { text: 'имя', value: 'name', name: 'sort-by' },
-    { text: 'дата рождения', value: 'date-of-birth', name: 'sort-by' },
-  ],
-  statuses: [{ text: 'в архиве', value: 'in-archive' }],
-  dropdowns: [
-    {
-      title: 'Должность',
-      name: 'post',
-      items: [
-        { text: 'Повар', value: 'cook' },
-        { text: 'Официант', value: 'waiter' },
-        { text: 'Водитель', value: 'driver' },
-      ],
-    },
-  ],
-};
-
-const App = (): JSX.Element => {
-  const handleFiltersUpdate = (filtersState: IFiltersState): void => {
-    store.dispatch(actionFiltersUpdate(filtersState));
-  };
-
-  return (
-    <div className='page__content'>
-      <div className='page__filters'>
-        <Filters { ...filters } onUpdate={ handleFiltersUpdate } />
-      </div>
-      <div className='page__employees'>
-        <EmployeesContainer />
-      </div>
+const App = (): JSX.Element => (
+  <BrowserRouter>
+    <div className='page__app'>
+      <Switch>
+        <Route exact path='/' component={ Home } />
+        <Route exact path='/edit-card' component={ EditCard } />
+      </Switch>
     </div>
-  );
-};
+  </BrowserRouter>
+);
 
 export default App;
