@@ -8,8 +8,8 @@ const App = (): JSX.Element => (
   <BrowserRouter>
     <div className='page__app'>
       <Switch>
-        <Route exact path='/' component={ Home } />
-        <Route exact path='/edit-card' component={ EditCard } />
+        <Route exact path='edit-card' component={ EditCard } />
+        <Route exact component={ Home } />
       </Switch>
     </div>
   </BrowserRouter>
