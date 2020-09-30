@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const AutoprefixerPlugin = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const mode = isProduction ? 'production' : 'development';
@@ -15,11 +16,14 @@ const getFileName = (extension) => `[name].[${isProduction ? 'content' : ''}hash
 const getOptimization = () => {
   return isProduction
     ? {
-      minimizer: [new TerserPlugin({
-        terserOptions: {},
-        cache: true,
-        parallel: true,
-      })]
+      minimizer: [
+        new OptimizeCssAssetsWebpackPlugin(),
+        new TerserPlugin({
+          terserOptions: {},
+          cache: true,
+          parallel: true,
+        }),
+      ],
     }
     : {};
 };
