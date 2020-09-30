@@ -1,5 +1,6 @@
 import { Store } from 'redux';
 
+import config from './config';
 import baseEmployees from '../data/employees.json';
 
 const filterEmployees = (
@@ -86,12 +87,20 @@ const defaultState = {
   filtersState: defaultFiltersState,
 };
 
+const checkState = (state: IStoreState): boolean => {
+  if (typeof state !== 'object' || !state) return false;
+
+  return config.stateKeys.every((key) => (
+    Object.prototype.hasOwnProperty.call(state, key)
+  ));
+};
+
 const loadState = (): IStoreState => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const state = JSON.parse(localStorage.getItem('state'));
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    if (state !== null) return state;
+    if (checkState(state)) return state;
     console.warn('Failed to load application state.');
   } catch (error) {
     console.error(error);

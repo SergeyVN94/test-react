@@ -46,11 +46,10 @@ const Filters = (props: IFiltersProps): JSX.Element => {
     {
       statuses
       && <div className='filters__statuses filters__group'>
-        { statuses.map((item) => <div className="filters__checkbox">
+        { statuses.map((item) => <div className="filters__checkbox" key={ item.value }>
           <CheckboxButton
             { ...item }
             onToggle={ handleCheckboxToggle }
-            key={ item.value }
             checked={ (typeof filtersState[item.value] === 'boolean') && Boolean(filtersState[item.value]) }
           />
         </div>) }
@@ -59,11 +58,10 @@ const Filters = (props: IFiltersProps): JSX.Element => {
     {
       dropdowns
       && <div className='filters__dropdowns filters__group'>
-        { dropdowns.map((item) => <div className="filters__dropdown">
+        { dropdowns.map((item) => <div className="filters__dropdown" key={ item.name }>
           <Dropdown
             { ...item }
             onSelect={ handleDropdownSelect }
-            key={ item.name }
             role={ filtersState.role && filtersState.role.toString() }
           />
         </div>) }

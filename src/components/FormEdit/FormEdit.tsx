@@ -1,6 +1,6 @@
 import React, { FormEvent } from 'react';
 
-import config from '../../data/config';
+import config from '../../store/config';
 import CheckboxButton from '../CheckboxButton/CheckboxButton';
 import Dropdown from '../Dropdown/Dropdown';
 import TextField from '../TextField/TextField';
@@ -109,6 +109,8 @@ const FormEdit = (props: IFormEditProps): JSX.Element => {
       <div className="form-edit__item">
         <div className="form-edit__phone">
           <TextField
+            placeholder='+_ (___) ___-____'
+            type='tel'
             name='phone'
             mask='+0 (000) 000-0000'
             value={ state.phone }
@@ -120,6 +122,7 @@ const FormEdit = (props: IFormEditProps): JSX.Element => {
       <div className="form-edit__item">
         <div className="form-edit__birthday">
           <TextField
+            placeholder='ДД.ММ.ГГГГ'
             name='birthday'
             mask='00.00.0000'
             value={ state.birthday }

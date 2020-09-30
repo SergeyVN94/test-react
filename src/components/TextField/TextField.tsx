@@ -10,6 +10,7 @@ const TextField = (props: ITextFieldProps): JSX.Element => {
     value: initialValue = '',
     onInput = null,
     theme = '',
+    type: inputType = 'text',
   } = props;
 
   const [value, setValue] = React.useState(initialValue);
@@ -43,7 +44,7 @@ const TextField = (props: ITextFieldProps): JSX.Element => {
 
   return (<input
     className={ `text-field ${themes}` }
-    type='text'
+    type={ inputType }
     name={ name }
     placeholder={ placeholder }
     value={ value }

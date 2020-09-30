@@ -17,7 +17,17 @@ const config = {
       },
     ],
   },
+  rolesTranslate: {
+    cook: 'Повар',
+    waiter: 'Официант',
+    driver: 'Водитель',
+  },
   defaultRole: 'cook',
+  stateKeys: [
+    'employees',
+    'filteredEmployee',
+    'filtersState',
+  ],
 };
 
 export default config;

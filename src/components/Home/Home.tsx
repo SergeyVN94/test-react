@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { actionFiltersUpdate } from '../../store/action-creators/action-creators';
 import store from '../../store/store';
-import config from '../../data/config';
+import config from '../../store/config';
 import EmployeesContainer from '../../containers/EmployeesContainer';
 import Filters from '../Filters/Filters';
 import './home.sass';

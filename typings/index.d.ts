@@ -81,5 +81,6 @@ interface ITextFieldProps {
   placeholder?: string;
   value?: string | number;
   theme?: string;
+  type?: string;
   onInput?: (value: string) => void;
 }
