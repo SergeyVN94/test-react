@@ -14,7 +14,7 @@ const TextField = (props: ITextFieldProps): JSX.Element => {
 
   const [value, setValue] = React.useState(initialValue);
 
-  const correctTheme = theme === 'incorrect-value' ? 'text-field_theme_incorrect-value' : '';
+  const themes = theme === 'incorrect-value' ? 'text-field_theme_incorrect-value' : '';
 
   const parseWithMask = (currentValue: string): string => {
     let numbers = currentValue.match(/\d/g) || [];
@@ -42,7 +42,7 @@ const TextField = (props: ITextFieldProps): JSX.Element => {
   };
 
   return (<input
-    className={ `text-field ${correctTheme}` }
+    className={ `text-field ${themes}` }
     type='text'
     name={ name }
     placeholder={ placeholder }

@@ -13,7 +13,7 @@ const CheckboxButton = (props: ICheckboxProps): JSX.Element => {
   const [isChecked, setChecked] = React.useState(checked);
 
   const handleChange = (): void => {
-    (onToggle && value) && onToggle(value, !isChecked);
+    onToggle && onToggle(value, !isChecked);
     setChecked(!isChecked);
   };
 
@@ -21,7 +21,7 @@ const CheckboxButton = (props: ICheckboxProps): JSX.Element => {
     <label className='checkbox-button' >
       <input className='checkbox-button__input'
         type='checkbox' value={ value } checked={ isChecked } onChange={ handleChange } />
-      <div className='checkbox-button__new-input'></div>
+      <div className='checkbox-button__new-input'>check</div>
       <p className='checkbox-button__text'>{ text }</p>
     </label>
   );

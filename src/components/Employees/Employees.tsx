@@ -1,6 +1,6 @@
 import React from 'react';
 
-import EmployeeCard from '../employee-card/EmployeeCard';
+import EmployeeCard from '../EmployeeCard/EmployeeCard';
 import './employees.sass';
 
 const Employees = ({ employees }: IEmployeesProps): JSX.Element => (

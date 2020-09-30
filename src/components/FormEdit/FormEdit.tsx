@@ -1,9 +1,9 @@
 import React, { FormEvent } from 'react';
 
 import config from '../../data/config';
-import CheckboxButton from '../checkbox-button/CheckboxButton';
-import Dropdown from '../dropdown/Dropdown';
-import TextField from '../text-field/TextField';
+import CheckboxButton from '../CheckboxButton/CheckboxButton';
+import Dropdown from '../Dropdown/Dropdown';
+import TextField from '../TextField/TextField';
 
 import './form-edit.sass';
 

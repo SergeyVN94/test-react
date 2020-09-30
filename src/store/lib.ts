@@ -92,6 +92,7 @@ const loadState = (): IStoreState => {
     const state = JSON.parse(localStorage.getItem('state'));
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     if (state !== null) return state;
+    console.warn('Failed to load application state.');
   } catch (error) {
     console.error(error);
   }

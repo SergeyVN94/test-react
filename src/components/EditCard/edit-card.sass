@@ -1,0 +1,27 @@
+@import '@styles/mixins.sass'
+  
+.edit-card
+  &__container-content
+    @include container-content
+    padding: 7.1429rem 0 4.2857rem
+
+  &__link-to-home
+    @include text-body
+    @include button
+    margin-bottom: 1.2rem
+    background: #9394cf93
+
+    &:hover
+      box-shadow: 0 0 .7143rem #9394cfd8
+      text-decoration: underline
+
+    &:active
+      box-shadow: 0 0 .7143rem #98cf93d8
+
+.card-edit-employee
+  &__form-title
+    @include text-h3
+    margin-bottom: 1rem
+
+  &__form-edit
+    max-width: 28.5714rem

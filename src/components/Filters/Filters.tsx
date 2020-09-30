@@ -1,9 +1,9 @@
 import React from 'react';
 
 import store from '../../store/store';
-import Dropdown from '../dropdown/Dropdown';
-import CheckboxButton from '../checkbox-button/CheckboxButton';
-import RadioGroup from '../radio-group/RadioGroup';
+import Dropdown from '../Dropdown/Dropdown';
+import CheckboxButton from '../CheckboxButton/CheckboxButton';
+import RadioGroup from '../RadioGroup/RadioGroup';
 import './filters.sass';
 
 const Filters = (props: IFiltersProps): JSX.Element => {

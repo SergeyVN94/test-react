@@ -13,15 +13,13 @@
 
     &:checked + .checkbox-button__new-input
       border-color: $bg-primary
-      background: $gradient-primary
-      background-clip: text
-      -webkit-text-fill-color: transparent
-
+      color: $bg-primary
+      
     &:hover + .checkbox-button__new-input
-      box-shadow: 0px 0px 10px $bg-primary
+      box-shadow: 0 0 .7143rem $bg-primary
 
     &:active + .checkbox-button__new-input
-      box-shadow: 0px 0px 5px $text-secondary
+      box-shadow: 0 0 .3571rem $text-secondary
 
     &:focus + .checkbox-button__new-input
       border-color: $text-secondary
@@ -33,23 +31,23 @@
     min-width: $middle-first-size
     height: $middle-first-size
     background: #fff
-    border: 1px solid $light-title
+    border: .0714rem solid $light-title
     box-sizing: border-box
-    border-radius: 4px
+    border-radius: .2857rem
     font-family: 'Material Icons'
     font-style: normal
     font-weight: normal
     font-size: 1rem
-    color: white
+    color: #fff
     user-select: none
 
   &__text
     @include text-body
-    padding-top: 1px
+    padding-top: .0714rem
     margin-left: $tiny-size
     word-break: normal
     width: 100%
-    max-width: 200px
+    max-width: 14.2857rem
     color: $text-secondary
     line-height: normal 
     user-select: none
