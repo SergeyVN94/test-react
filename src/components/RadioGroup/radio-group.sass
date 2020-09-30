@@ -4,7 +4,7 @@
 .radio-group
   display: flex
   flex-direction: row
-  flex-wrap: nowrap
+  flex-wrap: wrap
 
   &__radio
     display: flex
@@ -12,9 +12,7 @@
     flex-wrap: nowrap
     align-items: center
     cursor: pointer
-
-    &:not(:first-child)
-      margin-left: 1rem
+    padding: .5rem
 
   &__input
     display: none
@@ -40,6 +38,8 @@
     display: flex
     width: $middle-first-size
     height: $middle-first-size
+    min-width: $middle-first-size
+    min-height: $middle-first-size
     background: #fff
     border: .0714rem solid $light-title
     border-radius: $tiny-size

@@ -2,12 +2,14 @@
   padding: 1rem
   border-radius: .2857rem
   box-shadow: 0 0 .7143rem #5753538a
-
   width: 100%
   display: flex
   flex-direction: row
-  flex-wrap: wrap
-  align-items: flex-end
+  flex-wrap: wrap-reverse
+  align-items: flex-start
+
+  &__group
+    padding: 1rem
 
   &__statuses,
   &__dropdowns
@@ -15,6 +17,6 @@
     flex-direction: row
     flex-wrap: wrap
 
-  &__statuses,
-  &__dropdowns
-    margin-left: 2rem
+  &__checkbox,
+  &__dropdown
+    padding: .5rem

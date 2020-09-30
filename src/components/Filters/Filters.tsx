@@ -39,30 +39,34 @@ const Filters = (props: IFiltersProps): JSX.Element => {
   return (<div className='filters'>
     {
       sortedBy
-      && <div className='filters__sort-options'>
+      && <div className='filters__sort-options filters__group'>
           <RadioGroup radioProps={ sortedBy } onToggle={ handleRadioGroupToggle } />
         </div>
     }
     {
       statuses
-      && <div className='filters__statuses'>
-        { statuses.map((item) => <CheckboxButton
-          { ...item }
-          onToggle={ handleCheckboxToggle }
-          key={ item.value }
-          checked={ (typeof filtersState[item.value] === 'boolean') && Boolean(filtersState[item.value]) }
-        />) }
+      && <div className='filters__statuses filters__group'>
+        { statuses.map((item) => <div className="filters__checkbox">
+          <CheckboxButton
+            { ...item }
+            onToggle={ handleCheckboxToggle }
+            key={ item.value }
+            checked={ (typeof filtersState[item.value] === 'boolean') && Boolean(filtersState[item.value]) }
+          />
+        </div>) }
       </div>
     }
     {
       dropdowns
-      && <div className='filters__dropdowns'>
-        { dropdowns.map((item) => <Dropdown
-          { ...item }
-          onSelect={ handleDropdownSelect }
-          key={ item.name }
-          role={ filtersState.role && filtersState.role.toString() }
-        />) }
+      && <div className='filters__dropdowns filters__group'>
+        { dropdowns.map((item) => <div className="filters__dropdown">
+          <Dropdown
+            { ...item }
+            onSelect={ handleDropdownSelect }
+            key={ item.name }
+            role={ filtersState.role && filtersState.role.toString() }
+          />
+        </div>) }
       </div>
     }
   </div>);
