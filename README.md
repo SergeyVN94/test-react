@@ -17,3 +17,11 @@ https://sergeyvn94.github.io/test-react/
 * `start:dev` - запуск девсервера на http://localhost:9000.
 * `eslint` - Проверка линтером на ошибки.
 * `eslint-fix` - Исправление линтером ошибок.
+
+### Используемые технологии
+* react
+* react router
+* redux
+* typescript
+* sass
+* webpack
