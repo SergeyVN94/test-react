@@ -23,6 +23,9 @@ const EditCard = (): JSX.Element => {
     employees[index] = employee;
     employees[index].id = finallyId;
 
+    if (isNewEmployee) console.info(`Added user with id ${finallyId}.`);
+    else console.info(`Changed user with id ${finallyId}.`);
+
     store.dispatch(actionEmployeesUpdate(employees));
     window.location.href = '/';
   };

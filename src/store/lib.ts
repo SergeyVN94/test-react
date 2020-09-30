@@ -51,6 +51,8 @@ const filterEmployees = (
 };
 
 const reducer = (state: IStoreState, action: IStoreAction): IStoreState => {
+  console.info(`A new event has happened: '${action.type}'.`);
+
   switch (action.type) {
     case 'CHANGE_FILTERS':
       return { ...state, filteredEmployee: filterEmployees(action.filtersState, state.employees) };
@@ -68,6 +70,8 @@ const reducer = (state: IStoreState, action: IStoreAction): IStoreState => {
 };
 
 const saveStateToLocalStorage = (store: Store<IStoreState, IStoreAction>): void => {
+  console.info('Trying to save application state.');
+
   try {
     localStorage.setItem('state', JSON.stringify(store.getState()));
   } catch (error) {
@@ -96,12 +100,15 @@ const checkState = (state: IStoreState): boolean => {
 };
 
 const loadState = (): IStoreState => {
+  console.info('An attempt was made to load the state of the application.');
+
   try {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const state = JSON.parse(localStorage.getItem('state'));
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     if (checkState(state)) return state;
-    console.warn('Failed to load application state.');
+    console.warn('Invalid application state object loaded.');
+    console.warn('The application will be initialized to its default state.');
   } catch (error) {
     console.error(error);
   }
