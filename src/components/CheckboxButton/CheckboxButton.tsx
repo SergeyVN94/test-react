@@ -2,7 +2,7 @@ import React from 'react';
 
 import './checkbox-button.sass';
 
-const CheckboxButton = (props: ICheckboxProps): JSX.Element => {
+const CheckboxButton: React.FC<ICheckboxProps> = (props) => {
   const {
     text,
     value,
@@ -14,13 +14,18 @@ const CheckboxButton = (props: ICheckboxProps): JSX.Element => {
 
   const handleChange = (): void => {
     onToggle && onToggle(value, !isChecked);
-    setChecked(!isChecked);
+    setChecked((isPrevChecked) => !isPrevChecked);
   };
 
   return (
     <label className='checkbox-button' >
-      <input className='checkbox-button__input'
-        type='checkbox' value={ value } checked={ isChecked } onChange={ handleChange } />
+      <input
+        className='checkbox-button__input'
+        type='checkbox'
+        value={ value }
+        checked={ isChecked }
+        onChange={ handleChange }
+      />
       <div className='checkbox-button__new-input'>check</div>
       <p className='checkbox-button__text'>{ text }</p>
     </label>

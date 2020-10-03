@@ -2,7 +2,7 @@ import React from 'react';
 
 import './dropdown.sass';
 
-const Dropdown = (props: IDropdownProps): JSX.Element => {
+const Dropdown: React.FC<IDropdownProps> = (props) => {
   const {
     items = [],
     name = '',
@@ -16,19 +16,19 @@ const Dropdown = (props: IDropdownProps): JSX.Element => {
   let currentIndex = items.findIndex(({ text, value }) => (text === role || value === role));
   if (currentIndex < 0 || !role) currentIndex = 0;
 
-  const [state, setSate] = React.useState({
+  const [state, setState] = React.useState({
     currentIndex,
     isExpanded: false,
     headText: (items && items[currentIndex].text) || '',
   });
 
   const toggleExpanded = (): void => {
-    setSate({ ...state, isExpanded: !state.isExpanded });
+    setState((prevState) => ({ ...prevState, isExpanded: !state.isExpanded }));
   };
 
   const handleItemClick = (index: number): void => {
     const { text, value } = items[index];
-    setSate({ isExpanded: false, currentIndex: index, headText: text });
+    setState({ isExpanded: false, currentIndex: index, headText: text });
     onSelect && onSelect(name, value);
   };
 
@@ -44,10 +44,11 @@ const Dropdown = (props: IDropdownProps): JSX.Element => {
           {
             items.map((item, index) => (
               <li className='dropdown__item' key={ item.value }>
-                <p className='dropdown__item-text' data-value={ item.value } onClick={
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  handleItemClick.bind(this, index)
-                }>
+                <p
+                  className='dropdown__item-text'
+                  data-value={ item.value }
+                  onClick={ () => handleItemClick(index) }
+                >
                   { item.text }
                 </p>
               </li>

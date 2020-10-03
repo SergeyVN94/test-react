@@ -2,7 +2,7 @@ import React, { FormEvent } from 'react';
 
 import './radio-group.sass';
 
-const RadioGroup = (props: IRadioGroupProps): JSX.Element => {
+const RadioGroup: React.FC<IRadioGroupProps> = (props) => {
   const {
     radioProps = [],
     onToggle = null,

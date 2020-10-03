@@ -2,7 +2,7 @@ import React, { FormEvent } from 'react';
 
 import './text-field.sass';
 
-const TextField = (props: ITextFieldProps): JSX.Element => {
+const TextField: React.FC<ITextFieldProps> = (props) => {
   const {
     mask = '',
     name = '',

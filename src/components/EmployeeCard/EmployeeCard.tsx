@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './employee-card.sass';
 
-const EmployeeCard = (props: IEmployeeCardProps): JSX.Element => (
+const EmployeeCard: React.FC<IEmployeeCardProps> = (props) => (
   <Link className='employee-card' data-info={ JSON.stringify(props) } to={ `/edit-card?id=${props.id}` }>
     <ul className='employee-card__container'>
       <li className='employee-card__item'>

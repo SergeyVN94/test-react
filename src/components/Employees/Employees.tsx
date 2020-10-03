@@ -3,7 +3,7 @@ import React from 'react';
 import EmployeeCard from '../EmployeeCard/EmployeeCard';
 import './employees.sass';
 
-const Employees = ({ employees }: IEmployeesProps): JSX.Element => (
+const Employees: React.FC<IEmployeesProps> = ({ employees }) => (
   <div className='employees'>
     <ul className='employees__container'>
       {

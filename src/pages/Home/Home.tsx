@@ -5,10 +5,10 @@ import { actionFiltersUpdate } from '../../store/action-creators/action-creators
 import store from '../../store/store';
 import config from '../../store/config';
 import EmployeesContainer from '../../containers/EmployeesContainer';
-import Filters from '../Filters/Filters';
+import Filters from '../../components/Filters/Filters';
 import './home.sass';
 
-const Home = (): JSX.Element => {
+const Home: React.FC = () => {
   const handleFiltersUpdate = (filtersState: IFiltersState): void => {
     store.dispatch(actionFiltersUpdate(filtersState));
   };

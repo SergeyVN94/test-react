@@ -7,7 +7,7 @@ import TextField from '../TextField/TextField';
 
 import './form-edit.sass';
 
-const FormEdit = (props: IFormEditProps): JSX.Element => {
+const FormEdit: React.FC<IFormEditProps> = (props) => {
   const {
     id = -1,
     birthday = '',

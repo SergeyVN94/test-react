@@ -6,7 +6,7 @@ import CheckboxButton from '../CheckboxButton/CheckboxButton';
 import RadioGroup from '../RadioGroup/RadioGroup';
 import './filters.sass';
 
-const Filters = (props: IFiltersProps): JSX.Element => {
+const Filters: React.FC<IFiltersProps> = (props) => {
   const {
     sortedBy = [],
     statuses = [],

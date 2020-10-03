@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 import store from '../../store/store';
 import { actionEmployeesUpdate } from '../../store/action-creators/action-creators';
-import FormEdit from '../FormEdit/FormEdit';
+import FormEdit from '../../components/FormEdit/FormEdit';
 import './edit-card.sass';
 
-const EditCard = (): JSX.Element => {
+const EditCard: React.FC = () => {
   const params = new URLSearchParams(window.location.search);
   const id = parseInt(params.get('id'), 10);
   const isNewEmployee = Number.isNaN(id);
