@@ -4,6 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const AutoprefixerPlugin = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const mode = isProduction ? 'production' : 'development';
@@ -66,7 +67,7 @@ const config = {
   mode,
   context,
   resolve,
-  entry: './public/index.tsx',
+  entry: './index.tsx',
   output: {
     path: dist,
     filename: getFileName('.js'),
@@ -75,12 +76,15 @@ const config = {
   optimization: getOptimization(),
   plugins: [
     new HTMLWebpackPlugin({
-      template: './public/index.html',
+      template: './index.html',
       filename: `${dist}/index.html`,
       minify: isProduction,
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: getFileName('.css') }),
+    new CopyPlugin({
+      patterns: [{ from: './assets/favicons', to: 'favicons' }],
+    }),
     AutoprefixerPlugin,
   ],
   devServer: {
