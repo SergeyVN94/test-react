@@ -1,7 +1,9 @@
 @import '@styles/constants.sass'
 @import '@styles/mixins.sass'
   
-.checkbox-button
+$root: '.checkbox'
+
+#{$root}
   display: flex
   flex-direction: row
   flex-wrap: nowrap
@@ -9,20 +11,21 @@
   cursor: pointer
 
   &__input
-    display: none
-
-    &:checked + .checkbox-button__new-input
+    position: absolute
+    visibility: hidden
+    
+    &:checked + #{$root}__new-input
       border-color: $bg-primary
       color: $bg-primary
       
-    &:hover + .checkbox-button__new-input
-      box-shadow: 0 0 .7143rem $bg-primary
+    &:hover + #{$root}__new-input
+      box-shadow: 0 0 10px $bg-primary
 
-    &:active + .checkbox-button__new-input
-      box-shadow: 0 0 .3571rem $text-secondary
+    &:active + #{$root}__new-input
+      box-shadow: 0 0 5px $text-secondary
 
-    &:focus + .checkbox-button__new-input
-      box-shadow: 0 0 0.7143rem #c13dd3dc
+    &:focus + #{$root}__new-input
+      box-shadow: 0 0 10px #c13dd3dc
 
   &__new-input
     display: flex
@@ -31,23 +34,22 @@
     min-width: $middle-first-size
     height: $middle-first-size
     background: #fff
-    border: .0714rem solid $light-title
+    border: 1px solid $light-title
     box-sizing: border-box
-    border-radius: .2857rem
+    border-radius: 4px
     font-family: 'Material Icons'
     font-style: normal
     font-weight: normal
-    font-size: 1rem
+    font-size: 14px
     color: #fff
     user-select: none
 
   &__text
     @include text-body
-    padding-top: .0714rem
     margin-left: $tiny-size
+    padding-top: 1px
     word-break: normal
     width: 100%
-    max-width: 14.2857rem
     color: $text-secondary
     line-height: normal 
     user-select: none
