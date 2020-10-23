@@ -39,12 +39,6 @@ type IStoreAction = {
   employees: IEmployeeInfo[];
 };
 
-interface ICheckboxProps {
-  text: string;
-  value: string;
-  checked?: boolean;
-  onToggle?: (value: string, checked: boolean) => void;
-}
 
 interface IRadioProps extends ICheckboxProps {
   name: string;
