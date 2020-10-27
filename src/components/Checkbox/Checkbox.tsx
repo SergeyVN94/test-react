@@ -7,7 +7,7 @@ interface ICheckboxProps {
   label: string;
   name: string;
   checked?: boolean;
-  onChange?: (checked: boolean) => void;
+  onChange: (checked: boolean) => void;
 }
 
 const b = block('checkbox');
@@ -23,7 +23,7 @@ const CheckboxButton: React.FC<ICheckboxProps> = (props) => {
   const [isChecked, setChecked] = React.useState(checked);
 
   const handleChange = (): void => {
-    onChange && onChange(!isChecked);
+    onChange(!isChecked);
     setChecked(!isChecked);
   };
 
