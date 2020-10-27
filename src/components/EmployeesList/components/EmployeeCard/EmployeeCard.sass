@@ -1,19 +1,17 @@
-@import '@styles/mixins.sass'
-  
 .employee-card
   display: block
-  padding: 1rem 1.5rem
-  border-radius: .2857rem 
+  padding: 14px 21px
+  border-radius: 4px 
   background: #afa3e43b
   text-decoration: none
   user-select: none
   cursor: pointer
 
   &:hover
-    box-shadow: 0 0 .7143rem #afa3e4fa
+    box-shadow: 0 0 10px #afa3e4fa
 
   &:active
-    box-shadow: 0 0 .7143rem #e4a3a3fa
+    box-shadow: 0 0 10px #e4a3a3fa
 
   &__container
     margin: 0
@@ -21,28 +19,27 @@
     list-style: none
 
   &__item:not(:first-child)
-    margin-top: .5rem
+    margin-top: 7px
 
-  &__text
-    @include text-body
+  &__inner
     margin: 0
-    padding: .1429rem 0 .2143rem
+    padding: 2px 0 3px
     display: flex
     flex-direction: row
     flex-wrap: nowrap
     align-items: flex-end
-    line-height: 1.25rem
+    line-height: 17.5px
 
   &__label,
   &__value
-    padding: .4286rem .7143rem
-    border-radius: .2857rem
+    padding: 6px 10px
+    border-radius: 4px
     word-break: break-all
 
   &__label
-    margin-right: 1rem
-    width: 7.1429rem
-    min-width: 7.1429rem
+    margin-right: 14px
+    width: 100px
+    min-width: 100px
     background: #a3b8e4a8
     
   &__value
