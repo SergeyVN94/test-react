@@ -43,3 +43,5 @@ const CheckboxButton: React.FC<ICheckboxProps> = (props) => {
 };
 
 export default CheckboxButton;
+
+export type { ICheckboxProps };
