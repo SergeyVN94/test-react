@@ -58,7 +58,10 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "bem-cn": "^3.0.1",
+    "fontsource-roboto": "^3.0.3",
     "history": "^5.0.0",
     "material-icons": "^0.3.1",
     "normalize.css": "^8.0.1",
