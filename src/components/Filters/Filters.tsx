@@ -1,73 +1,47 @@
-// import React from 'react';
+import React from 'react';
+import { block } from 'bem-cn';
+import { connect, ConnectedProps } from 'react-redux';
+import { Switch, FormControlLabel } from '@material-ui/core';
 
-// import store from '../../store/store';
-// import Dropdown from '../Dropdown/Dropdown';
-// import CheckboxButton from '../Checkbox/Checkbox';
-// import RadioGroup from '../RadioGroup/RadioGroup';
-// import './Filters.sass';
+import { IFiltersState } from '../../store/filters/types';
+import { setFlagArchive } from '../../store/filters/actions';
+import { RootState } from '../../store/rootReducer';
 
-// const Filters: React.FC<IFiltersProps> = (props) => {
-//   const {
-//     sortedBy = [],
-//     statuses = [],
-//     dropdowns = [],
-//     onUpdate,
-//   } = props;
+import './Filters.sass';
 
-//   const { filtersState } = store.getState();
+interface IFiltersProps {
+  state: IFiltersState;
+}
 
-//   const index = sortedBy.findIndex((item) => item.value === filtersState['sort-by']);
-//   if (index >= 0) sortedBy.forEach((_, i) => { sortedBy[i].checked = (i === index); });
+const mapStoreToProps = (store: RootState): IFiltersProps => ({
+  state: store.filters,
+});
 
-//   if (!sortedBy.some((item) => item.checked)) sortedBy.length && (sortedBy[0].checked = true);
+const mapDispatch = {
+  setFlagArchive,
+};
 
-//   const handleDropdownSelect = (name: string, value: string): void => {
-//     if (name && value) filtersState[name] = value;
-//     onUpdate({ ...filtersState });
-//   };
+const connector = connect(mapStoreToProps, mapDispatch);
 
-//   const handleCheckboxToggle = (value: string, checked: boolean): void => {
-//     filtersState[value] = checked;
-//     onUpdate({ ...filtersState });
-//   };
+const b = block('filters');
 
-//   const handleRadioGroupToggle = (name: string, value: string): void => {
-//     if (name && value) filtersState[name] = value;
-//     onUpdate({ ...filtersState });
-//   };
+type FiltersProps = ConnectedProps<typeof connector>;
 
-//   return (<div className='filters'>
-//     {
-//       sortedBy
-//       && <div className='filters__sort-options filters__group'>
-//           <RadioGroup radioProps={ sortedBy } onToggle={ handleRadioGroupToggle } />
-//         </div>
-//     }
-//     {
-//       statuses
-//       && <div className='filters__statuses filters__group'>
-//         { statuses.map((item) => <div className="filters__checkbox" key={ item.value }>
-//           <CheckboxButton
-//             { ...item }
-//             onToggle={ handleCheckboxToggle }
-//             checked={ (typeof filtersState[item.value] === 'boolean') && Boolean(filtersState[item.value]) }
-//           />
-//         </div>) }
-//       </div>
-//     }
-//     {
-//       dropdowns
-//       && <div className='filters__dropdowns filters__group'>
-//         { dropdowns.map((item) => <div className="filters__dropdown" key={ item.name }>
-//           <Dropdown
-//             { ...item }
-//             onSelect={ handleDropdownSelect }
-//             role={ filtersState.role && filtersState.role.toString() }
-//           />
-//         </div>) }
-//       </div>
-//     }
-//   </div>);
-// };
+const Filters: React.FC<FiltersProps> = (props) => {
+  const { role, sortBy, inArchive } = props.state;
 
-// export default Filters;
+  return (
+    <form className={b()}>
+      <FormControlLabel
+        label="в архиве"
+        control={<Switch
+          value="in-archive"
+          checked={inArchive}
+          onChange={(_, checked) => props.setFlagArchive(checked)}
+        />}
+      />
+    </form>
+  );
+};
+
+export default connector(Filters);

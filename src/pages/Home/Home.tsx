@@ -5,27 +5,40 @@ import { block } from 'bem-cn';
 
 import { RootState } from '../../store/rootReducer';
 import type { IEmployeeInfo } from '../../store/employees/types';
+import { IFiltersState } from '../../store/filters/types';
 import EmployeeCard from '../../components/EmployeeCard/EmployeeCard';
+import Filters from '../../components/Filters/Filters';
 
 import './Home.sass';
 
 interface IHomeProps {
   employees: IEmployeeInfo[];
+  filters: IFiltersState;
 }
 
 const mapStateToProps = (state: RootState): IHomeProps => ({
   employees: state.employees.employees,
+  filters: state.filters,
 });
 
 const connector = connect(mapStateToProps, null);
 
 const b = block('home');
 
-const Home: React.FC<IHomeProps> = ({ employees }) => {
-  const employeesList = employees.length === 0
-    ? <h1>Список сотрудников пуст</h1>
-    : employees.map((info) => (
-      <li className={b('employee')}>
+const filterEmployees = (
+  employees: IEmployeeInfo[],
+  filters: IFiltersState,
+): IEmployeeInfo[] => (
+  employees.filter(({ isArchive }) => isArchive === filters.inArchive)
+);
+
+const Home: React.FC<IHomeProps> = ({ employees, filters }) => {
+  const filteredEmployees = filterEmployees(employees, filters);
+
+  const employeesList = filteredEmployees.length === 0
+    ? <h1>Сотрудников не найдено</h1>
+    : filteredEmployees.map((info) => (
+      <li className={b('employee')} key={info.id}>
         <EmployeeCard info={info} />
       </li>
     ));
@@ -38,7 +51,7 @@ const Home: React.FC<IHomeProps> = ({ employees }) => {
             Добавить сотрудника
           </Link>
           <div className={b('filters')}>
-
+            <Filters />
           </div>
           <ul className={b('employees')}>
             {employeesList}
