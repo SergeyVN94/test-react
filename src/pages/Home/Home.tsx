@@ -1,35 +1,52 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { block } from 'bem-cn';
 
-import { actionFiltersUpdate } from '../../store/action-creators/action-creators';
-import store from '../../store/store';
-import config from '../../store/config';
-import EmployeesContainer from '../../containers/EmployeesContainer';
-import Filters from '../../components/Filters/Filters';
-import './home.sass';
+import { RootState } from '../../store/rootReducer';
+import type { IEmployeeInfo } from '../../store/employees/types';
+import EmployeeCard from '../../components/EmployeeCard/EmployeeCard';
 
-const Home: React.FC = () => {
-  const handleFiltersUpdate = (filtersState: IFiltersState): void => {
-    store.dispatch(actionFiltersUpdate(filtersState));
-  };
+import './Home.sass';
+
+interface IHomeProps {
+  employees: IEmployeeInfo[];
+}
+
+const mapStateToProps = (state: RootState): IHomeProps => ({
+  employees: state.employees.employees,
+});
+
+const connector = connect(mapStateToProps, null);
+
+const b = block('home');
+
+const Home: React.FC<IHomeProps> = ({ employees }) => {
+  const employeesList = employees.length === 0
+    ? <h1>Список сотрудников пуст</h1>
+    : employees.map((info) => (
+      <li className={b('employee')}>
+        <EmployeeCard info={info} />
+      </li>
+    ));
 
   return (
-    <div className='home'>
-      <main className='home__main'>
-        <div className='home__container-content'>
-          <Link className='home__add-employee-button' to='/edit-card'>
+    <div className={b()}>
+      <main className={b('main')}>
+        <div className={b('container-content')}>
+          <Link className={b('add-employee-button')} to='/edit-card'>
             Добавить сотрудника
           </Link>
-          <div className='home__filters'>
-            <Filters {...config.filters} onUpdate={handleFiltersUpdate} />
+          <div className={b('filters')}>
+
           </div>
-          <div className='home__employees'>
-            <EmployeesContainer />
-          </div>
+          <ul className={b('employees')}>
+            {employeesList}
+          </ul>
         </div>
       </main>
     </div>
   );
 };
 
-export default Home;
+export default connector(Home);

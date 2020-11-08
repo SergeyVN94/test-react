@@ -1,73 +1,73 @@
-import React from 'react';
+// import React from 'react';
 
-import store from '../../store/store';
-import Dropdown from '../Dropdown/Dropdown';
-import CheckboxButton from '../CheckboxButton/CheckboxButton';
-import RadioGroup from '../RadioGroup/RadioGroup';
-import './filters.sass';
+// import store from '../../store/store';
+// import Dropdown from '../Dropdown/Dropdown';
+// import CheckboxButton from '../Checkbox/Checkbox';
+// import RadioGroup from '../RadioGroup/RadioGroup';
+// import './Filters.sass';
 
-const Filters: React.FC<IFiltersProps> = (props) => {
-  const {
-    sortedBy = [],
-    statuses = [],
-    dropdowns = [],
-    onUpdate,
-  } = props;
+// const Filters: React.FC<IFiltersProps> = (props) => {
+//   const {
+//     sortedBy = [],
+//     statuses = [],
+//     dropdowns = [],
+//     onUpdate,
+//   } = props;
 
-  const { filtersState } = store.getState();
+//   const { filtersState } = store.getState();
 
-  const index = sortedBy.findIndex((item) => item.value === filtersState['sort-by']);
-  if (index >= 0) sortedBy.forEach((_, i) => { sortedBy[i].checked = (i === index); });
+//   const index = sortedBy.findIndex((item) => item.value === filtersState['sort-by']);
+//   if (index >= 0) sortedBy.forEach((_, i) => { sortedBy[i].checked = (i === index); });
 
-  if (!sortedBy.some((item) => item.checked)) sortedBy.length && (sortedBy[0].checked = true);
+//   if (!sortedBy.some((item) => item.checked)) sortedBy.length && (sortedBy[0].checked = true);
 
-  const handleDropdownSelect = (name: string, value: string): void => {
-    if (name && value) filtersState[name] = value;
-    onUpdate({ ...filtersState });
-  };
+//   const handleDropdownSelect = (name: string, value: string): void => {
+//     if (name && value) filtersState[name] = value;
+//     onUpdate({ ...filtersState });
+//   };
 
-  const handleCheckboxToggle = (value: string, checked: boolean): void => {
-    filtersState[value] = checked;
-    onUpdate({ ...filtersState });
-  };
+//   const handleCheckboxToggle = (value: string, checked: boolean): void => {
+//     filtersState[value] = checked;
+//     onUpdate({ ...filtersState });
+//   };
 
-  const handleRadioGroupToggle = (name: string, value: string): void => {
-    if (name && value) filtersState[name] = value;
-    onUpdate({ ...filtersState });
-  };
+//   const handleRadioGroupToggle = (name: string, value: string): void => {
+//     if (name && value) filtersState[name] = value;
+//     onUpdate({ ...filtersState });
+//   };
 
-  return (<div className='filters'>
-    {
-      sortedBy
-      && <div className='filters__sort-options filters__group'>
-          <RadioGroup radioProps={ sortedBy } onToggle={ handleRadioGroupToggle } />
-        </div>
-    }
-    {
-      statuses
-      && <div className='filters__statuses filters__group'>
-        { statuses.map((item) => <div className="filters__checkbox" key={ item.value }>
-          <CheckboxButton
-            { ...item }
-            onToggle={ handleCheckboxToggle }
-            checked={ (typeof filtersState[item.value] === 'boolean') && Boolean(filtersState[item.value]) }
-          />
-        </div>) }
-      </div>
-    }
-    {
-      dropdowns
-      && <div className='filters__dropdowns filters__group'>
-        { dropdowns.map((item) => <div className="filters__dropdown" key={ item.name }>
-          <Dropdown
-            { ...item }
-            onSelect={ handleDropdownSelect }
-            role={ filtersState.role && filtersState.role.toString() }
-          />
-        </div>) }
-      </div>
-    }
-  </div>);
-};
+//   return (<div className='filters'>
+//     {
+//       sortedBy
+//       && <div className='filters__sort-options filters__group'>
+//           <RadioGroup radioProps={ sortedBy } onToggle={ handleRadioGroupToggle } />
+//         </div>
+//     }
+//     {
+//       statuses
+//       && <div className='filters__statuses filters__group'>
+//         { statuses.map((item) => <div className="filters__checkbox" key={ item.value }>
+//           <CheckboxButton
+//             { ...item }
+//             onToggle={ handleCheckboxToggle }
+//             checked={ (typeof filtersState[item.value] === 'boolean') && Boolean(filtersState[item.value]) }
+//           />
+//         </div>) }
+//       </div>
+//     }
+//     {
+//       dropdowns
+//       && <div className='filters__dropdowns filters__group'>
+//         { dropdowns.map((item) => <div className="filters__dropdown" key={ item.name }>
+//           <Dropdown
+//             { ...item }
+//             onSelect={ handleDropdownSelect }
+//             role={ filtersState.role && filtersState.role.toString() }
+//           />
+//         </div>) }
+//       </div>
+//     }
+//   </div>);
+// };
 
-export default Filters;
+// export default Filters;

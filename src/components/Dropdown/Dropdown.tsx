@@ -1,59 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { block } from 'bem-cn';
 
-import './dropdown.sass';
+import './Dropdown.sass';
+
+interface IDropdownItem {
+  label: string;
+  value: string;
+  selected?: boolean;
+}
+
+interface IDropdownProps {
+  title?: string;
+  name: string;
+  items: IDropdownItem[];
+  onChange: (value: string) => void;
+}
+
+const b = block('dropdown');
 
 const Dropdown: React.FC<IDropdownProps> = (props) => {
   const {
     items = [],
     name = '',
     title = '',
-    role = '',
-    onSelect = null,
+    onChange,
   } = props;
 
-  const titleElement = title ? <h3 className='dropdown__title'>{ title }</h3> : '';
-
-  let currentIndex = items.findIndex(({ text, value }) => (text === role || value === role));
-  if (currentIndex < 0 || !role) currentIndex = 0;
-
-  const [state, setState] = React.useState({
-    currentIndex,
-    isExpanded: false,
-    headText: (items && items[currentIndex].text) || '',
+  const [isOpened, setOpened] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    const index = items.findIndex((item) => item.selected);
+    return index < 0 ? 0 : index;
   });
 
-  const toggleExpanded = (): void => {
-    setState((prevState) => ({ ...prevState, isExpanded: !state.isExpanded }));
+  const handleItemClick = (index: number): void => {
+    const { value } = items[index];
+    setCurrentIndex(index);
+    onChange(value);
   };
 
-  const handleItemClick = (index: number): void => {
-    const { text, value } = items[index];
-    setState({ isExpanded: false, currentIndex: index, headText: text });
-    onSelect && onSelect(name, value);
-  };
+  const bodyItems = items.map(({ label, value, selected }, index) => (
+    <li className={b('item-wrapper', { selected })} key={value}>
+      <button className={b('item')} onClick={() => handleItemClick(index)} >{label}</button>
+    </li>
+  ));
 
   return (
-    <div className={ `dropdown ${state.isExpanded ? 'dropdown_expanded' : ''}` }>
-      { titleElement }
-      <div className='dropdown__head' onClick={ toggleExpanded }>
-        <p className='dropdown__head-text'>{ state.headText }</p>
-        <button className='dropdown__expand-button'>expand_more</button>
+    <div className={b({ opened: isOpened })}>
+      { title && <h3 className={b('title')}>{ title }</h3> }
+      <div className={b('head')}>
+        <input
+          className={b('input')}
+          value={items[currentIndex].label}
+          onClick={(prev) => setOpened(!prev)}
+          name={name}
+          readOnly
+        />
+        <button className={b('button')}>expand_more</button>
       </div>
-      <div className='dropdown__container'>
-        <ul className='dropdown__items'>
-          {
-            items.map((item, index) => (
-              <li className='dropdown__item' key={ item.value }>
-                <p
-                  className='dropdown__item-text'
-                  data-value={ item.value }
-                  onClick={ () => handleItemClick(index) }
-                >
-                  { item.text }
-                </p>
-              </li>
-            ))
-          }
+      <div className={b('container')}>
+        <ul className={b('items')}>
+          { bodyItems }
         </ul>
       </div>
     </div>
@@ -61,3 +67,5 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
 };
 
 export default Dropdown;
+
+export type { IDropdownProps, IDropdownItem };

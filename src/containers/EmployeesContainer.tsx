@@ -1,11 +1,11 @@
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-import Employees from '../components/Employees/Employees';
+// import Employees, { IEmployeesListProps } from '../components/EmployeesList/EmployeesList';
 
-const mapStateToProps = (state: IStoreState): IEmployeesProps => (
-  { employees: state.filteredEmployee }
-);
+// const mapStateToProps = (state: IStoreState): IEmployeesListProps => (
+//   // { employees: state.filteredEmployee }
+// );
 
-const EmployeesContainer = connect(mapStateToProps)(Employees);
+// const EmployeesContainer = connect(mapStateToProps)(Employees);
 
-export default EmployeesContainer;
+// export default EmployeesContainer;

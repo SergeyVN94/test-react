@@ -2,29 +2,29 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { block } from 'bem-cn';
 
+import type { IEmployeeInfo } from '../../store/employees/types';
+
 import './EmployeeCard.sass';
 
-interface IEmployeeCardInfo {
-  id: number;
-  name: string;
-  isArchive: boolean;
-  role: string;
-  phone: string;
-  birthday: string;
-}
-
 interface IEmployeeCardProps {
-  info: IEmployeeCardInfo;
+  info: IEmployeeInfo;
 }
 
 const b = block('employee-card');
 
 const EmployeeCard: React.FC<IEmployeeCardProps> = ({ info }) => {
+  const {
+    id,
+    name,
+    phone,
+    role,
+  } = info;
+
   const rows = [
-    { label: 'Имя', value: info.name },
-    { label: 'Должность', value: info.role },
-    { label: 'Телефон', value: info.phone },
-  ].map(({ label, value }) => (
+    ['Имя', name],
+    ['Должность', role],
+    ['Телефон', phone],
+  ].map(([label, value]) => (
     <li className={b('item')} key={label}>
       <p className={b('inner')}>
         <span className={b('label')}>{label}</span>
@@ -34,12 +34,10 @@ const EmployeeCard: React.FC<IEmployeeCardProps> = ({ info }) => {
   ));
 
   return (
-    <Link className={b()} to={ `/edit-card?id=${info.id}` }>
+    <Link className={b()} to={ `/edit-card?id=${id}` }>
       <ul className={b('container')}>{rows}</ul>
     </Link>
   );
 };
 
 export default EmployeeCard;
-
-export type { IEmployeeCardInfo };
