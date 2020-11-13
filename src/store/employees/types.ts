@@ -1,12 +1,15 @@
+import { Role } from '../filters/types';
+
 export const LOAD_EMPLOYEES = '@APP/LOAD_EMPLOYEES';
+export const EDIT_EMPLOYEE = '@APP/EDIT_EMPLOYEE';
 
 export interface IEmployeeInfo {
   id: number;
   name: string;
   isArchive: boolean;
-  role: string;
+  role: Role;
   phone: string;
-  birthday: string;
+  birthday: Date;
 }
 
 export interface IEmployeesState {
@@ -18,4 +21,10 @@ interface ILoadEmployeesAction {
   payload: IEmployeeInfo[];
 }
 
-export type EmployeesActionTypes = ILoadEmployeesAction;
+interface IEditEmployeeAction {
+  type: typeof EDIT_EMPLOYEE;
+  payload: IEmployeeInfo;
+  index: number;
+}
+
+export type EmployeesActionTypes = ILoadEmployeesAction | IEditEmployeeAction;

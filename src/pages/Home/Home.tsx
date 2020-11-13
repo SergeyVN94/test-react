@@ -44,9 +44,8 @@ const filterEmployees = (
 
     case 'date-of-birth':
       return filteredEmployees.sort((e1, e2) => {
-        // TODO: Сделать нормальную сортировку для дат
-        if (e1.birthday === e2.birthday) return 0;
-        return e1.birthday > e2.birthday ? 1 : -1;
+        if (e1.birthday.getTime() === e2.birthday.getTime()) return 0;
+        return e1.birthday.getTime() > e2.birthday.getTime() ? 1 : -1;
       });
 
     default:
