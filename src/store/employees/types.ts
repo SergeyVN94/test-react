@@ -12,9 +12,7 @@ export interface IEmployeeInfo {
   birthday: Date;
 }
 
-export interface IEmployeesState {
-  employees: IEmployeeInfo[];
-}
+export type IEmployeesState = IEmployeeInfo[];
 
 interface ILoadEmployeesAction {
   type: typeof LOAD_EMPLOYEES;

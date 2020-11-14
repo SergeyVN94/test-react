@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { block } from 'bem-cn';
+import { Button } from '@material-ui/core';
 
 import { RootState } from '../../store/rootReducer';
 import type { IEmployeeInfo } from '../../store/employees/types';
@@ -17,7 +18,7 @@ interface IHomeProps {
 }
 
 const mapStateToProps = (state: RootState): IHomeProps => ({
-  employees: state.employees.employees,
+  employees: state.employees,
   filters: state.filters,
 });
 
@@ -68,9 +69,9 @@ const Home: React.FC<IHomeProps> = ({ employees, filters }) => {
     <div className={b()}>
       <main className={b('main')}>
         <div className={b('container-content')}>
-          <Link className={b('add-employee-button')} to='/edit-card'>
-            Добавить сотрудника
-          </Link>
+          <div className={b('add-employee-button')}>
+            <Button color="primary" variant="contained" component={Link} to="/edit-card">Добавить сотрудника</Button>
+          </div>
           <div className={b('filters')}>
             <Filters />
           </div>

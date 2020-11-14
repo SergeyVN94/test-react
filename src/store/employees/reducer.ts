@@ -6,22 +6,18 @@ import {
   EDIT_EMPLOYEE,
 } from './types';
 
-const initialState: IEmployeesState = {
-  employees: [],
-};
-
 const employeesReducer: Reducer<IEmployeesState, EmployeesActionTypes> = (
-  state = initialState,
+  state = [],
   action,
 ): IEmployeesState => {
   switch (action.type) {
     case LOAD_EMPLOYEES:
-      return { ...state, employees: action.payload };
+      return action.payload;
 
     case EDIT_EMPLOYEE: {
-      const newState = { ...state };
+      const newState = [...state];
       const { payload, index } = action;
-      newState.employees[index] = payload;
+      newState[index] = payload;
       return newState;
     }
 
