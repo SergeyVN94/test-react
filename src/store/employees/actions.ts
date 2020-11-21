@@ -1,4 +1,5 @@
 import {
+  ADD_EMPLOYEE,
   EDIT_EMPLOYEE,
   EmployeesActionTypes,
   IEmployeeInfo,
@@ -14,4 +15,9 @@ export const editEmployee = (employee: IEmployeeInfo, index: number): EmployeesA
   type: EDIT_EMPLOYEE,
   payload: employee,
   index,
+});
+
+export const addEmployee = (employee: IEmployeeInfo): EmployeesActionTypes => ({
+  type: ADD_EMPLOYEE,
+  payload: employee,
 });

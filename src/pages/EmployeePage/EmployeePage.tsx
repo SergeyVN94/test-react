@@ -5,7 +5,7 @@ import { block } from 'bem-cn';
 import { Button } from '@material-ui/core';
 
 import { IEmployeeInfo } from '../../store/employees/types';
-import { editEmployee } from '../../store/employees/actions';
+import { editEmployee, addEmployee } from '../../store/employees/actions';
 import { RootState } from '../../store/rootReducer';
 import store from '../../store/store';
 import FormEdit from '../../components/FormEmployee/FormEmployee';
@@ -24,6 +24,7 @@ const mapStateToProps = (state: RootState): IEmployeePageProps => ({
 
 const mapDispatch = {
   editEmployee,
+  addEmployee,
 };
 
 const connector = connect(mapStateToProps, mapDispatch);
@@ -36,6 +37,7 @@ const EmployeePage: React.FC<EmployeesPageProps> = (props) => {
   const {
     employees,
     editEmployee: editEmployeeAction,
+    addEmployee: addEmployeeAction,
     match,
   } = props;
 
@@ -43,23 +45,29 @@ const EmployeePage: React.FC<EmployeesPageProps> = (props) => {
   const employeeIndex = employees.findIndex((info) => info.id === id);
   const employeeInfo = employees[employeeIndex];
   const isNewEmployee = match.params.id === 'new';
-  const isValidId = !isNewEmployee && !Number.isNaN(id);
-  const isEmployeeFound = !isNewEmployee && employeeInfo !== undefined;
+  const isValidId = !Number.isNaN(id);
+  const isEmployeeFound = employeeInfo !== undefined;
 
   const history = useHistory();
 
   let pageTitle = `${(match.params.id === 'new' ? 'Добавление нового ' : 'Редактирование')} сотрудника`;
-  if (!isValidId) pageTitle = 'Некорректный id сотрудника!';
-  else if (!isEmployeeFound) pageTitle = `Сотрудник с id '${match.params.id}' не найден!`;
+
+  if (!isNewEmployee) {
+    if (!isValidId) pageTitle = 'Некорректный id сотрудника!';
+    else if (!isEmployeeFound) pageTitle = `Сотрудник с id '${match.params.id}' не найден!`;
+  }
 
   const handleSubmit = (info: IEmployeeInfo): void => {
     if (!isNewEmployee) {
       store.dispatch(editEmployeeAction(info, employeeIndex));
-      history.push('/');
+    } else {
+      store.dispatch(addEmployeeAction({ ...info, id: Date.now() }));
     }
+
+    history.push('/');
   };
 
-  const form = (!isValidId || !isEmployeeFound)
+  const form = !isNewEmployee && (!isValidId || !isEmployeeFound)
     ? null
     : (
       <div className={b('form')}>

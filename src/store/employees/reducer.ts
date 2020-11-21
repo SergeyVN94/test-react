@@ -4,6 +4,7 @@ import {
   EmployeesActionTypes,
   LOAD_EMPLOYEES,
   EDIT_EMPLOYEE,
+  ADD_EMPLOYEE,
 } from './types';
 
 const employeesReducer: Reducer<IEmployeesState, EmployeesActionTypes> = (
@@ -19,6 +20,10 @@ const employeesReducer: Reducer<IEmployeesState, EmployeesActionTypes> = (
       const { payload, index } = action;
       newState[index] = payload;
       return newState;
+    }
+
+    case ADD_EMPLOYEE: {
+      return [...state, action.payload];
     }
 
     default:
