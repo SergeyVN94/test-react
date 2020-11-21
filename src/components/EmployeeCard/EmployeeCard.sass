@@ -13,34 +13,31 @@
   &:active
     box-shadow: 0 0 10px #e4a3a3fa
 
+  &:visited,
+  &:active
+    color: #2e2727ea
+
   &__container
     margin: 0
     padding: 0
     list-style: none
 
-  &__item:not(:first-child)
-    margin-top: 7px
-
-  &__inner
-    margin: 0
-    padding: 2px 0 3px
+  &__item
     display: flex
-    flex-direction: row
     flex-wrap: nowrap
-    align-items: flex-end
-    line-height: 17.5px
 
+    &:not(:first-child)
+      margin-top: 7px
+    
   &__label,
   &__value
+    margin: 0
     padding: 6px 10px
     border-radius: 4px
-    word-break: break-all
-
+    
   &__label
-    margin-right: 14px
-    width: 100px
-    min-width: 100px
     background: #a3b8e4a8
     
   &__value
     background: #a3e4aca8
+    margin-left: 4px

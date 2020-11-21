@@ -51,26 +51,38 @@ const Filters: React.FC<FiltersProps> = (props) => {
 
   return (
     <form className={b()}>
-      <FormControlLabel
-        label="в архиве"
-        control={<Switch
-          value="in-archive"
-          checked={inArchive}
-          onChange={(_, checked) => props.setFlagArchive(checked)}
-        />}
-      />
-      <Select id="select" label="Должность" value={role} onChange={handleSelectChange}>
-        <MenuItem value="cook">Повар</MenuItem>
-        <MenuItem value="driver">Водитель</MenuItem>
-        <MenuItem value="waiter">Официант</MenuItem>
-      </Select>
-      <FormControl component="fieldset">
-        <FormLabel component="legend">Сортировать по:</FormLabel>
-        <RadioGroup aria-label="sort-option" name="sort-option" value={sortBy} onChange={handleRadioChange}>
-          <FormControlLabel value="name" control={<Radio />} label="Имя" />
-          <FormControlLabel value="date-of-birth" control={<Radio />} label="Дата рождения" />
-        </RadioGroup>
-      </FormControl>
+      <div className={b('item')}>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Сортировать по:</FormLabel>
+          <RadioGroup
+            aria-label="sort-option"
+            name="sort-option"
+            value={sortBy}
+            onChange={handleRadioChange}
+            row
+          >
+            <FormControlLabel value="name" control={<Radio />} label="Имя" inlist />
+            <FormControlLabel value="date-of-birth" control={<Radio />} label="Дата рождения" />
+          </RadioGroup>
+        </FormControl>
+      </div>
+      <div className={b('item')}>
+        <FormControlLabel
+          label="в архиве"
+          control={<Switch
+            value="in-archive"
+            checked={inArchive}
+            onChange={(_, checked) => props.setFlagArchive(checked)}
+          />}
+        />
+      </div>
+      <div className={b('item')}>
+        <Select id="select" label="Должность" value={role} onChange={handleSelectChange}>
+          <MenuItem value="cook">Повар</MenuItem>
+          <MenuItem value="driver">Водитель</MenuItem>
+          <MenuItem value="waiter">Официант</MenuItem>
+        </Select>
+      </div>
     </form>
   );
 };

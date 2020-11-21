@@ -26,10 +26,8 @@ const EmployeeCard: React.FC<IEmployeeCardProps> = ({ info }) => {
     ['Телефон', phone],
   ].map(([label, value]) => (
     <li className={b('item')} key={label}>
-      <p className={b('inner')}>
-        <span className={b('label')}>{label}</span>
-        <span className={b('value')}>{value}</span>
-      </p>
+      <p className={b('label')}>{label}</p>
+      <p className={b('value')}>{value}</p>
     </li>
   ));
 
