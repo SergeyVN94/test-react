@@ -8,7 +8,7 @@ import store from '../../store/store';
 
 const App: React.FC = () => (
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename='/test-react'>
       <Switch>
         <Route exact path='/' component={ Home } />
         <Route path='/employee/:id' component={ EmployeePage } />
