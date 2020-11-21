@@ -41,8 +41,6 @@ type FiltersProps = ConnectedProps<typeof connector>;
 const Filters: React.FC<FiltersProps> = (props) => {
   const { role, sortBy, inArchive } = props.state;
 
-  console.log(role);
-
   const handleSelectChange = ({ target }: React.ChangeEvent<{ value: typeof role }>): void => {
     props.setRole(target.value);
   };

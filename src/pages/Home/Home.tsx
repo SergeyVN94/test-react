@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { block } from 'bem-cn';
 import { Button } from '@material-ui/core';
 
@@ -54,7 +54,7 @@ const filterEmployees = (
   }
 };
 
-const Home: React.FC<IHomeProps> = ({ employees, filters }) => {
+const Home: React.FC<ConnectedProps<typeof connector>> = ({ employees, filters }) => {
   const filteredEmployees = filterEmployees(employees, filters);
 
   const employeesList = filteredEmployees.length === 0
@@ -70,7 +70,7 @@ const Home: React.FC<IHomeProps> = ({ employees, filters }) => {
       <main className={b('main')}>
         <div className={b('container-content')}>
           <div className={b('add-employee-button')}>
-            <Button color="primary" variant="contained" component={Link} to="/edit-card">Добавить сотрудника</Button>
+            <Button color="primary" variant="contained" component={Link} to="/employee/new">Добавить сотрудника</Button>
           </div>
           <div className={b('filters')}>
             <Filters />

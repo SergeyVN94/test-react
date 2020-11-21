@@ -1,18 +1,17 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import { loadEmployees } from '../../store/employees/actions';
 
 import Home from '../../pages/Home/Home';
 import EmployeePage from '../../pages/EmployeePage/EmployeePage';
 import store from '../../store/store';
 import { IEmployeeInfo } from '../../store/employees/types';
+import { loadEmployees } from '../../store/employees/actions';
 import { Role } from '../../store/filters/types';
 
 import employeesJSON from '../../data/employees.json';
 
 const baseEmployeesList: IEmployeeInfo[] = [];
-
 const roles: Role[] = ['cook', 'driver', 'waiter'];
 
 employeesJSON.forEach((info): boolean => {
@@ -59,7 +58,7 @@ const App: React.FC = () => {
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <Route path='/' component={ Home } />
+          <Route exact path='/' component={ Home } />
           <Route path='/employee/:id' component={ EmployeePage } />
         </Switch>
       </BrowserRouter>

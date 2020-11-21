@@ -60,6 +60,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@types/react-input-mask": "^2.0.5",
     "bem-cn": "^3.0.1",
     "fontsource-roboto": "^3.0.3",
     "history": "^5.0.0",
@@ -67,6 +68,7 @@
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-input-mask": "^3.0.0-alpha.2",
     "react-redux": "^7.2.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",

@@ -14,7 +14,8 @@
     "allowJs": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "strictNullChecks": true
   },
   "exclude": ["node_modules"]
 }

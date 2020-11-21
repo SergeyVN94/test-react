@@ -34,7 +34,7 @@ const EmployeeCard: React.FC<IEmployeeCardProps> = ({ info }) => {
   ));
 
   return (
-    <Link className={b()} to={ `/edit-card?id=${id}` }>
+    <Link className={b()} to={ `/employee/${id}` }>
       <ul className={b('container')}>{rows}</ul>
     </Link>
   );

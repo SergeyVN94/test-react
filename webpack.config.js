@@ -71,6 +71,7 @@ const config = {
   output: {
     path: dist,
     filename: getFileName('.js'),
+    publicPath: '/',
   },
   module: { rules },
   optimization: getOptimization(),
@@ -92,9 +93,7 @@ const config = {
     index: 'index.html',
     compress: true,
     port: 9000,
-    historyApiFallback: {
-      '/edit-card': 'index.html',
-    },
+    historyApiFallback: true,
   },
 };
 
