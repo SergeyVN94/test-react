@@ -61,7 +61,7 @@ const Filters: React.FC<FiltersProps> = (props) => {
             onChange={handleRadioChange}
             row
           >
-            <FormControlLabel value="name" control={<Radio />} label="Имя" inlist />
+            <FormControlLabel value="name" control={<Radio />} label="Имя" />
             <FormControlLabel value="date-of-birth" control={<Radio />} label="Дата рождения" />
           </RadioGroup>
         </FormControl>
