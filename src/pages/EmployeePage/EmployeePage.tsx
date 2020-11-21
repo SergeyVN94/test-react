@@ -7,7 +7,6 @@ import { Button } from '@material-ui/core';
 import { IEmployeeInfo } from '../../store/employees/types';
 import { editEmployee, addEmployee } from '../../store/employees/actions';
 import { RootState } from '../../store/rootReducer';
-import store from '../../store/store';
 import FormEdit from '../../components/FormEmployee/FormEmployee';
 
 import './EmployeePage.sass';
@@ -59,9 +58,9 @@ const EmployeePage: React.FC<EmployeesPageProps> = (props) => {
 
   const handleSubmit = (info: IEmployeeInfo): void => {
     if (!isNewEmployee) {
-      store.dispatch(editEmployeeAction(info, employeeIndex));
+      editEmployeeAction(info, employeeIndex);
     } else {
-      store.dispatch(addEmployeeAction({ ...info, id: Date.now() }));
+      addEmployeeAction({ ...info, id: Date.now() });
     }
 
     history.push('/');
